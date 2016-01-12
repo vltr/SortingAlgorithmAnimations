@@ -87,54 +87,59 @@ public class Main extends JApplet {
 	}
 
 	public static void main(String[] args) {
-		JFrame frame = new JFrame("Sorting Algorithm Animations");
-		Main main = new Main();
-		frame.add(main);
-		frame.setUndecorated(true);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.pack();
-		frame.setLocationRelativeTo(null);
-		frame.setVisible(true);
-		
-		
-		int[] list = new int[size];
-		
-		for (int i = 0; i < list.length; i++) {
-			list[i] = i + 1;
-		}
-		for (int i = 0; i < list.length; i++) {
-			int index = (int) (Math.random() * list.length);
-			int temp = list[i];
-			list[i] = list[index];
-			list[index] = temp;
-		}
-		main.beginAnimation("Random", list);
-		
-		for (int i = 0; i < list.length; i++) {
-			list[i] = (1 + i / (size / 4) ) * (size / 4);
-		}
-		for (int i = 0; i < list.length; i++) {
-			int index = (int) (Math.random() * list.length);
-			int temp = list[i];
-			list[i] = list[index];
-			list[index] = temp;
-		}
-		main.beginAnimation("Few Unique", list);
+		int numOfRun = 1;
 
-		
-		for (int i = 0; i < list.length; i++) {
-			list[i] = size - i;
+		for (int counter = 0; counter <= numOfRun; counter++) {
+
+			JFrame frame = new JFrame("Sorting Algorithm Animations");
+			Main main = new Main();
+			frame.add(main);
+			frame.setUndecorated(true);
+			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			frame.pack();
+			frame.setLocationRelativeTo(null);
+			frame.setVisible(true);
+
+
+			int[] list = new int[size];
+
+			for (int i = 0; i < list.length; i++) {
+				list[i] = i + 1;
+			}
+			for (int i = 0; i < list.length; i++) {
+				int index = (int) (Math.random() * list.length);
+				int temp = list[i];
+				list[i] = list[index];
+				list[index] = temp;
+			}
+			main.beginAnimation("Random", list);
+
+			for (int i = 0; i < list.length; i++) {
+				list[i] = (1 + i / (size / 4) ) * (size / 4);
+			}
+			for (int i = 0; i < list.length; i++) {
+				int index = (int) (Math.random() * list.length);
+				int temp = list[i];
+				list[i] = list[index];
+				list[index] = temp;
+			}
+			main.beginAnimation("Few Unique", list);
+
+
+			for (int i = 0; i < list.length; i++) {
+				list[i] = size - i;
+			}
+			main.beginAnimation("Reversed", list);
+
+
+			for (int i = 0; i < list.length / 2; i++) {
+				list[i] = i + 1;
+			}
+			for (int i = list.length / 2; i < list.length; i++) {
+				list[i] = i + 2;
+			}
+			list[list.length - 1] = list.length / 2 + 1;
+			main.beginAnimation("Almost Sorted", list);
 		}
-		main.beginAnimation("Reversed", list);
-		
-		
-		for (int i = 0; i < list.length / 2; i++) {
-			list[i] = i + 1;
-		}
-		for (int i = list.length / 2; i < list.length; i++) {
-			list[i] = i + 2;
-		}
-		list[list.length - 1] = list.length / 2 + 1;
-		main.beginAnimation("Almost Sorted", list);
 	}
 }
