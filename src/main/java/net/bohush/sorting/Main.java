@@ -5,23 +5,25 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+
+
 //Visualization and Comparison of Sorting Algorithms
 public class Main extends JApplet {
 
 	private static final long serialVersionUID = 1L;
-	private SortPanel[] sortPanels = new SortPanel[9];
-	private static int size = 100;
+	private SortPanel[] sortPanels = new SortPanel[11];
+	private static int size = 200;
 	private int sleepTime = 2;
 	private String animationName = "";
 
 	public Main() {
 		setLayout(new GridLayout(1, 1, 0, 0));
 		SortPanelsHolder sortPanelHolder = new SortPanelsHolder();
-		sortPanelHolder.setLayout(new  GridLayout(0, 3, 0, 0));
+		sortPanelHolder.setLayout(new  GridLayout(0, 4, 0, 0));
 		sortPanelHolder.setBackground(Color.BLACK);
 		sortPanelHolder.setForeground(Color.BLACK);
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		int width = screenSize.width / 3;
+		int width = screenSize.width / 4;
 		int height = screenSize.height / 3;
 		sortPanels[0] = new SelectionSortPanel(" Selection Sort ", sleepTime, width, height);
 		sortPanels[1] = new ShellSortPanel(" Shell Sort ", sleepTime, width, height);
@@ -32,15 +34,17 @@ public class Main extends JApplet {
 		sortPanels[6] = new BubbleSortPanel(" Bubble Sort ", sleepTime, width, height);
 		sortPanels[7] = new CombSortPanel(" Comb Sort ", sleepTime, width, height);
 		sortPanels[8] = new CocktailSortPanel(" Cocktail Sort ", sleepTime, width, height);
-		
-		
+		sortPanels[9] = new RadixSortPanel(" Radix Sort ", sleepTime, width, height);
+		sortPanels[10] = new GnomeSortPanel(" Gnome Sort ", sleepTime, width, height);
+
+
 		for (int i = 0; i < sortPanels.length; i++) {
 			sortPanels[i].setVisible(false);
-			sortPanelHolder.add(sortPanels[i]);				
+			sortPanelHolder.add(sortPanels[i]);
 		}
 		add(sortPanelHolder);
 	}
-	
+
 	class SortPanelsHolder extends JPanel {
 		private static final long serialVersionUID = 1L;
 		@Override
@@ -55,10 +59,10 @@ public class Main extends JApplet {
 			g.drawString(animationName, x, y);
 		}
 	}
-	
+
 	public void beginAnimation(String animationName, int[] list) {
 		try {
-			
+
 			this.animationName = animationName;
 			repaint();
 			Thread.sleep(2000);
